@@ -1,6 +1,6 @@
 # Class: dnscryptproxy 
 class dnscryptproxy (
-  $download_url = 'dnscrypt-proxy-linux_x86_64-2.0.44.tar.gz',
+  $download_url = 'https://github.com/DNSCrypt/dnscrypt-proxy/releases/download/2.0.44/dnscrypt-proxy-linux_x86_64-2.0.44.tar.gz',
   $install_path = '/opt',
 ){
 
