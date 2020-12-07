@@ -1,0 +1,17 @@
+#
+# Systemd unit file for dnscryptproxy 
+#
+
+[Unit]
+Description=dnscryptproxy
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/linux-x86_64
+ExecStart=/opt/linux-x86_64/dnscrypt-proxy -config /etc/dnscrypt-proxy.toml
+
+[Install]
+WantedBy=multi-user.target
+

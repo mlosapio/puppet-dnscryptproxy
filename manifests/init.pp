@@ -4,8 +4,37 @@ class dnscryptproxyi (
   $install_path = '/opt',
 ){
 
+  # hack for systemctl
+  exec { 'dnscrypt-systemd-reload':
+    command     => '/bin/systemctl daemon-reload',
+    refreshonly => true,
+  }
+
   file { $install_path:
     ensure => directory,
+  }
+
+  # service
+  service { 'dnscryptproxy':
+    ensure    => running,
+    provider  => systemd,
+    enable    => true,
+    hasstatus => true,
+    require   => File['/etc/systemd/system/dnscryptproxy.service'],
+  }
+
+  # Systemd file
+  file {'/etc/systemd/system/dnscryptproxy.service':
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0744',
+    source  => 'puppet:///modules/dnscryptproxy/dnscryptproxy.service',
+    require => Exec['install_dnscryptproxy'],
+    notify  => [
+        Exec['dnscryptproxy-systemd-reload'],
+        Service['dnscryptproxy'],
+    ],
   }
 
   # Hacky way to download the code 
