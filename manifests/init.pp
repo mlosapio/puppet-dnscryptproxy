@@ -10,7 +10,7 @@ class dnscryptproxy (
 
   # Hacky way to download the code 
   exec { "install_dnscrypt_proxy":
-    command     => "/bin/curl -o dnscryptproxy.tgz ${download_url} && tar zxvf dnscryptproxy.tgz",
+    command     => "/bin/curl -L -o dnscryptproxy.tgz ${download_url} && tar zxvf dnscryptproxy.tgz",
     cwd         => $install_path,
     creates     => "${install_path}/linux-x86_64",
     require     => File[$install_path]
