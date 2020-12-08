@@ -2,6 +2,8 @@
 class dnscryptproxyi (
   $download_url = 'dnscrypt-proxy-linux_x86_64-2.0.44.tar.gz',
   $install_path = '/opt',
+  $server_name = '',
+  $stamp = '',
 ){
 
   # hack for systemctl
