@@ -32,7 +32,7 @@ class dnscryptproxy (
     group   => 'root',
     mode    => '0744',
     source  => 'puppet:///modules/dnscryptproxy/dnscryptproxy.service',
-    require => Exec['install_dnscryptproxy'],
+    require => Exec['install_dnscrypt_proxy'],
     notify  => [
         Exec['dnscryptproxy-systemd-reload'],
         Service['dnscryptproxy'],
