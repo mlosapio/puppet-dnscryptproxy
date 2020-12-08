@@ -7,7 +7,7 @@ class dnscryptproxy (
 ){
 
   # hack for systemctl
-  exec { 'dnscrypt-systemd-reload':
+  exec { 'dnscryptproxy-systemd-reload':
     command     => '/bin/systemctl daemon-reload',
     refreshonly => true,
   }
